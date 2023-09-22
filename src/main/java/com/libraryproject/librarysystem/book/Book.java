@@ -1,13 +1,12 @@
 package com.libraryproject.librarysystem.book;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Set;
 
 @Entity
 @Getter
@@ -19,8 +18,16 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookId;
     private String title;
+    @ManyToOne
+    @JoinColumn(name = "author_id")
     private Author bookAuthor;
-    private BookType bookType;
+    @ManyToMany
+    @JoinTable(
+            name = "book_booktype",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_type_id")
+    )
+    private Set<BookType> bookTypes;
     private String description;
     private int numberOfPages;
     private String publishingHouse;
