@@ -20,7 +20,9 @@ public class Book {
     private Long bookId;
     private String title;
     private Author bookAuthor;
-    private Type type;
+    private BookType bookType;
+    private String description;
     private int numberOfPages;
+    private String publishingHouse;
 
 }
