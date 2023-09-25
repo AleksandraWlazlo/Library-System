@@ -18,6 +18,5 @@ public class BookType {
     private Long bookTypeId;
     private String name;
     @ManyToMany(mappedBy = "bookTypes")
-
     private Set<Book> books;
 }
