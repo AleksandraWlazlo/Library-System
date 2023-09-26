@@ -1,5 +1,6 @@
-package com.libraryproject.librarysystem.book;
+package com.libraryproject.librarysystem.author;
 
+import com.libraryproject.librarysystem.book.Book;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

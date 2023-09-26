@@ -1,7 +1,7 @@
-package com.libraryproject.librarysystem.book.dto;
+package com.libraryproject.librarysystem.book;
 
-import com.libraryproject.librarysystem.book.Author;
-import com.libraryproject.librarysystem.book.BookType;
+import com.libraryproject.librarysystem.author.Author;
+import com.libraryproject.librarysystem.booktype.BookType;
 
 public record BookResponseDto(
         Long bookId,

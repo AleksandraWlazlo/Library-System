@@ -1,7 +1,7 @@
-package com.libraryproject.librarysystem.book;
+package com.libraryproject.librarysystem.booktype;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
+import com.libraryproject.librarysystem.book.Book;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +15,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookType {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookTypeId;
     private String name;
     @ManyToMany(mappedBy = "bookTypes")

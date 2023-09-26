@@ -1,4 +1,4 @@
-package com.libraryproject.librarysystem.book.dto;
+package com.libraryproject.librarysystem.booktype;
 
 import com.libraryproject.librarysystem.book.Book;
 

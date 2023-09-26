@@ -1,4 +1,4 @@
-package com.libraryproject.librarysystem.book.dto;
+package com.libraryproject.librarysystem.author;
 
 import com.libraryproject.librarysystem.book.Book;
 import jakarta.persistence.OneToMany;
