@@ -1,7 +1,6 @@
 package com.libraryproject.librarysystem.author;
 
 import com.libraryproject.librarysystem.book.Book;
-import jakarta.persistence.OneToMany;
 
 import java.util.List;
 

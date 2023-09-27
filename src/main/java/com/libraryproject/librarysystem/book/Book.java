@@ -3,10 +3,7 @@ package com.libraryproject.librarysystem.book;
 import com.libraryproject.librarysystem.author.Author;
 import com.libraryproject.librarysystem.booktype.BookType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Set;
 
