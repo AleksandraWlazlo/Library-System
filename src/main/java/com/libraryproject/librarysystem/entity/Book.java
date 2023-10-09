@@ -1,7 +1,5 @@
-package com.libraryproject.librarysystem.book;
+package com.libraryproject.librarysystem.entity;
 
-import com.libraryproject.librarysystem.author.Author;
-import com.libraryproject.librarysystem.booktype.BookType;
 import jakarta.persistence.*;
 import lombok.*;
 

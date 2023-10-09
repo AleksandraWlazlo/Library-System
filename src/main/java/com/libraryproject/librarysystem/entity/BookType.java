@@ -1,6 +1,6 @@
-package com.libraryproject.librarysystem.booktype;
+package com.libraryproject.librarysystem.entity;
 
-import com.libraryproject.librarysystem.book.Book;
+import com.libraryproject.librarysystem.entity.Book;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

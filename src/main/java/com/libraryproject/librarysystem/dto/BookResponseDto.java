@@ -1,7 +1,7 @@
-package com.libraryproject.librarysystem.book;
+package com.libraryproject.librarysystem.dto;
 
-import com.libraryproject.librarysystem.author.Author;
-import com.libraryproject.librarysystem.booktype.BookType;
+import com.libraryproject.librarysystem.entity.Author;
+import com.libraryproject.librarysystem.entity.BookType;
 
 import java.util.Set;
 

@@ -1,9 +1,10 @@
-package com.libraryproject.librarysystem.book;
+package com.libraryproject.librarysystem.controller;
 
+import com.libraryproject.librarysystem.entity.Book;
+import com.libraryproject.librarysystem.service.BookService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;

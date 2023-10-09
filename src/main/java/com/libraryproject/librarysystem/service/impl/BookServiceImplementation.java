@@ -1,5 +1,8 @@
-package com.libraryproject.librarysystem.book;
+package com.libraryproject.librarysystem.service.impl;
 
+import com.libraryproject.librarysystem.entity.Book;
+import com.libraryproject.librarysystem.repository.BookRepository;
+import com.libraryproject.librarysystem.service.BookService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
