@@ -1,12 +1,12 @@
 package com.libraryproject.librarysystem.service;
 
-import com.libraryproject.librarysystem.entity.Book;
+import com.libraryproject.librarysystem.dto.BookResponseDto;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
 
 public interface BookService {
-   Page<Book> findAllBooksWithPagination(int pageNumber);
+   Page<BookResponseDto> findAllBooksWithPagination(int pageNumber);
 
-   List<Book> findAllBooks();
+   List<BookResponseDto> findAllBooks();
 }

@@ -1,15 +1,11 @@
 package com.libraryproject.librarysystem.dto;
 
-import com.libraryproject.librarysystem.entity.Author;
-import com.libraryproject.librarysystem.entity.BookType;
-
-import java.util.Set;
-
+import java.util.List;
 public record BookResponseDto(
         Long bookId,
         String title,
-        Author bookAuthor,
-        Set<BookType> bookType,
+        AuthorResponseDto bookAuthor,
+        List<String> bookTypes,
         String description,
         int numberOfPages,
         String publishingHouse
