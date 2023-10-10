@@ -17,11 +17,10 @@ import java.util.List;
 public class BookServiceImplementation implements BookService {
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
-    private static final int PAGE_SIZE = 10;
 
     @Override
-    public Page<BookResponseDto> findAllBooksWithPagination(int pageNumber) {
-        Page<Book> bookPage = bookRepository.findAll(PageRequest.of(pageNumber, PAGE_SIZE));
+    public Page<BookResponseDto> findAllBooksWithPagination(int pageNumber, int pageSize) {
+        Page<Book> bookPage = bookRepository.findAll(PageRequest.of(pageNumber, pageSize));
         Page<BookResponseDto> resultPage = bookPage.map(bookMapper::mapBookToBookResponseDto);
         return resultPage;
     }

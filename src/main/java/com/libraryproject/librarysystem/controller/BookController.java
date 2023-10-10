@@ -19,9 +19,10 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping("/page")
-    public ResponseEntity<Page<BookResponseDto>> getAllBooks(@RequestParam(required = false) Integer page){
+    public ResponseEntity<Page<BookResponseDto>> getAllBooks(@RequestParam(required = false) Integer page, @RequestParam(required = false) Integer pageSize){
         int pageNumber = (page != null && page >= 0) ? page : 0;
-        return ResponseEntity.ok(bookService.findAllBooksWithPagination(pageNumber));
+        int itemsPerPage = (pageSize != null && pageSize >= 0) ? pageSize : 10;
+        return ResponseEntity.ok(bookService.findAllBooksWithPagination(pageNumber, itemsPerPage));
     }
 
     @GetMapping
