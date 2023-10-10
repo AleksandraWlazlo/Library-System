@@ -4,7 +4,6 @@ import java.util.Set;
 
 public record BookTypeResponseDto(
         Long bookTypeId,
-        String name,
-        Set<BookResponseDto> books
+        String name
 ) {
 }
