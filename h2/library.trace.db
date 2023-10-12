@@ -155,3 +155,6 @@ org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "([
 Syntax error in SQL statement "([*]'Another Book by John Doe', 1, 'This is another book by John Doe.', 280, 'PublishCo'),\000d\000a    ('Yet Another Book by John Doe', 1, 'Yet another book description by John Doe.', 320, 'PublishCo')"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
 ('Another Book by John Doe', 1, 'This is another book by John Doe.', 280, 'PublishCo'),
     ('Yet Another Book by John Doe', 1, 'Yet another book description by John Doe.', 320, 'PublishCo') [42001-214]
+2023-10-12 19:26:28 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Obiekt jest zamknięty
+The object is already closed [90007-214]
