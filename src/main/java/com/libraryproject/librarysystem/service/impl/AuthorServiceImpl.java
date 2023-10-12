@@ -24,7 +24,8 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public AuthorResponseDto updateAuthor(AuthorRequestDto authorRequestDto, Long authorId) {
-        Author author = authorRepository.findById(authorId)
+        Author author = authorRepository
+                .findById(authorId)
                 .orElseThrow(() -> new AuthorNotFoundException(authorId));
 
         author.setFirstName(authorRequestDto.firstName());
@@ -32,5 +33,14 @@ public class AuthorServiceImpl implements AuthorService {
 
         Author savedAuthor = authorRepository.save(author);
         return authorMapper.mapAuthorToAuthorResponseDto(savedAuthor);
+    }
+
+    @Override
+    public void deleteAuthor(Long authorId) {
+        Author author = authorRepository
+                .findById(authorId)
+                .orElseThrow(() -> new AuthorNotFoundException(authorId));
+
+        authorRepository.delete(author);
     }
 }
