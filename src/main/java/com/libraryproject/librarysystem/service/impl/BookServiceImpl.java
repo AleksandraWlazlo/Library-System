@@ -25,7 +25,7 @@ import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-public class BookServiceImplementation implements BookService {
+public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
     private final AuthorRepository authorRepository;
@@ -54,19 +54,7 @@ public class BookServiceImplementation implements BookService {
         Book book = bookMapper.mapBookRequestDtoToBook(bookRequestDto);
         book.setBookAuthor(author);
 
-        Set<BookType> bookTypes = new HashSet<>();
-        for (String bookTypeName : bookRequestDto.bookTypes()) {
-            Optional<BookType> existingBookType = bookTypeRepository.findByName(bookTypeName);
-            if (existingBookType.isPresent()) {
-                bookTypes.add(existingBookType.get());
-            } else {
-                BookType newBookType = new BookType();
-                newBookType.setName(bookTypeName);
-                bookTypeRepository.save(newBookType);
-                bookTypes.add(newBookType);
-            }
-        }
-
+        Set<BookType> bookTypes = prepareBookTypesForSaving(bookRequestDto);
         book.setBookTypes(bookTypes);
 
         Book savedBook = bookRepository.save(book);
@@ -83,6 +71,20 @@ public class BookServiceImplementation implements BookService {
                 .findById(authorId)
                 .orElseThrow(() -> new AuthorNotFoundException(authorId));
 
+        Set<BookType> bookTypes = prepareBookTypesForSaving(bookRequestDto);
+
+        book.setBookTypes(bookTypes);
+        book.setBookAuthor(author);
+        book.setTitle(bookRequestDto.title());
+        book.setDescription(bookRequestDto.description());
+        book.setNumberOfPages(bookRequestDto.numberOfPages());
+        book.setPublishingHouse(bookRequestDto.publishingHouse());
+
+        Book savedBook = bookRepository.save(book);
+        return bookMapper.mapBookToBookResponseDto(savedBook);
+    }
+
+    Set<BookType> prepareBookTypesForSaving(BookRequestDto bookRequestDto){
         Set<BookType> bookTypes = new HashSet<>();
         for (String bookTypeName : bookRequestDto.bookTypes()) {
             Optional<BookType> existingBookType = bookTypeRepository.findByName(bookTypeName);
@@ -95,16 +97,7 @@ public class BookServiceImplementation implements BookService {
                 bookTypes.add(newBookType);
             }
         }
-
-        book.setBookTypes(bookTypes);
-        book.setBookAuthor(author);
-        book.setTitle(bookRequestDto.title());
-        book.setDescription(bookRequestDto.description());
-        book.setNumberOfPages(bookRequestDto.numberOfPages());
-        book.setPublishingHouse(bookRequestDto.publishingHouse());
-
-        Book savedBook = bookRepository.save(book);
-        return bookMapper.mapBookToBookResponseDto(savedBook);
+        return bookTypes;
     }
 
 }
