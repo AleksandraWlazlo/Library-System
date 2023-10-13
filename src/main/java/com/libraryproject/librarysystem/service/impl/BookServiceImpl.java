@@ -84,6 +84,15 @@ public class BookServiceImpl implements BookService {
         return bookMapper.mapBookToBookResponseDto(savedBook);
     }
 
+    @Override
+    public void deleteBook(Long bookId) {
+        Book book = bookRepository
+                .findById(bookId)
+                .orElseThrow(()-> new BookNotFoundException(bookId));
+
+        bookRepository.delete(book);
+    }
+
     Set<BookType> prepareBookTypesForSaving(BookRequestDto bookRequestDto){
         Set<BookType> bookTypes = new HashSet<>();
         for (String bookTypeName : bookRequestDto.bookTypes()) {
@@ -99,5 +108,4 @@ public class BookServiceImpl implements BookService {
         }
         return bookTypes;
     }
-
 }
