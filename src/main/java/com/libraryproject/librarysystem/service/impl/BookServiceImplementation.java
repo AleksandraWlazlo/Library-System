@@ -6,6 +6,7 @@ import com.libraryproject.librarysystem.entity.Author;
 import com.libraryproject.librarysystem.entity.Book;
 import com.libraryproject.librarysystem.entity.BookType;
 import com.libraryproject.librarysystem.exception.AuthorNotFoundException;
+import com.libraryproject.librarysystem.exception.BookNotFoundException;
 import com.libraryproject.librarysystem.mapper.BookMapper;
 import com.libraryproject.librarysystem.repository.AuthorRepository;
 import com.libraryproject.librarysystem.repository.BookRepository;
@@ -67,6 +68,40 @@ public class BookServiceImplementation implements BookService {
         }
 
         book.setBookTypes(bookTypes);
+
+        Book savedBook = bookRepository.save(book);
+        return bookMapper.mapBookToBookResponseDto(savedBook);
+    }
+
+    @Override
+    public BookResponseDto updateBook(Long bookId, BookRequestDto bookRequestDto) {
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(()-> new BookNotFoundException(bookId));
+
+        Long authorId = bookRequestDto.authorId();
+        Author author = authorRepository
+                .findById(authorId)
+                .orElseThrow(() -> new AuthorNotFoundException(authorId));
+
+        Set<BookType> bookTypes = new HashSet<>();
+        for (String bookTypeName : bookRequestDto.bookTypes()) {
+            Optional<BookType> existingBookType = bookTypeRepository.findByName(bookTypeName);
+            if (existingBookType.isPresent()) {
+                bookTypes.add(existingBookType.get());
+            } else {
+                BookType newBookType = new BookType();
+                newBookType.setName(bookTypeName);
+                bookTypeRepository.save(newBookType);
+                bookTypes.add(newBookType);
+            }
+        }
+
+        book.setBookTypes(bookTypes);
+        book.setBookAuthor(author);
+        book.setTitle(bookRequestDto.title());
+        book.setDescription(bookRequestDto.description());
+        book.setNumberOfPages(bookRequestDto.numberOfPages());
+        book.setPublishingHouse(bookRequestDto.publishingHouse());
 
         Book savedBook = bookRepository.save(book);
         return bookMapper.mapBookToBookResponseDto(savedBook);

@@ -12,4 +12,6 @@ public interface BookService {
    List<BookResponseDto> findAllBooks();
 
     BookResponseDto addBook(BookRequestDto bookRequestDto);
+
+    BookResponseDto updateBook(Long bookId, BookRequestDto bookRequestDto);
 }
