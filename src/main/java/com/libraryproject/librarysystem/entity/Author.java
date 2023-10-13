@@ -16,7 +16,6 @@ public class Author {
     private Long authorId;
     private String firstName;
     private String lastName;
-    private String biography;
     @OneToMany(mappedBy = "bookAuthor")
     private List<Book> listOfBooks;
 }

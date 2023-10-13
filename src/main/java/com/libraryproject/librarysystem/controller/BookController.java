@@ -1,14 +1,12 @@
 package com.libraryproject.librarysystem.controller;
 
+import com.libraryproject.librarysystem.dto.BookRequestDto;
 import com.libraryproject.librarysystem.dto.BookResponseDto;
 import com.libraryproject.librarysystem.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,4 +28,19 @@ public class BookController {
         return ResponseEntity.ok(bookService.findAllBooks());
     }
 
+    @PostMapping
+    public ResponseEntity<BookResponseDto> addBook(@RequestBody BookRequestDto bookRequestDto){
+        return ResponseEntity.ok(bookService.addBook(bookRequestDto));
+    }
+
+    @PutMapping("/{bookId}")
+    public ResponseEntity<BookResponseDto> updateBook(@PathVariable Long bookId, @RequestBody BookRequestDto bookRequestDto){
+        return ResponseEntity.ok(bookService.updateBook(bookId, bookRequestDto));
+    }
+
+    @DeleteMapping("/{bookId}")
+    public ResponseEntity<String> deleteBook(@PathVariable Long bookId){
+        bookService.deleteBook(bookId);
+        return ResponseEntity.ok().build();
+    }
 }
